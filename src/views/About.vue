@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavButtonComp />
     <h2>Vårt kaffe</h2>
     <article>
       <p>
@@ -44,7 +45,12 @@
 </template>
 
 <script>
+
+import NavButtonComp from '../components/NavButtonComp.vue'
 export default {
+  components: {
+    NavButtonComp
+  }
 
 }
 </script>
