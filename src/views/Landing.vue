@@ -1,7 +1,12 @@
 <template>
   <div>
     <NavComp />
-    <p>Landing</p>
+
+    <div>
+      <img class="logo" src="../assets/airbean_logo.svg" alt="picure of a logo">
+      <h1>AIR BEAN</h1>
+      <p>DRONEDELIVERED COFFEE</p>
+    </div>
   </div>
 </template>
 
@@ -15,5 +20,8 @@ export default {
 </script>
 
 <style>
-
+.logo {
+  background-color: var(--color1);
+  width: 100px;
+}
 </style>

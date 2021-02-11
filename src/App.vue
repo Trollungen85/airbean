@@ -2,27 +2,16 @@
   <div id="app">
     <router-view/>
   </div>
+
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+:root {
+  --color1: rgb(47, 41, 38);
+  --color2: rgb(14, 146, 125);
+  --color3: rgb(243, 228, 225);
+  --color4: rgb(229, 103, 78);
 }
+/* background-color: var(--color1); */
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
