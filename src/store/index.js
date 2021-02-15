@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    navClosed: true,
+    cartClosed: true,
+    user: { loggedIn: false},
     menu: [
       {
         id: 1,
@@ -47,6 +50,15 @@ export default new Vuex.Store({
   getters:{
   },
   mutations: {
+    toggleNav(state) {
+      state.navClosed = !state.navClosed;
+    },
+    toggleCart(state) {
+      state.cartClosed = !state.cartClosed; 
+    },
+    addUser(state, newUser) {
+      state.user = newUser;
+    }
   },
   actions: {
   },

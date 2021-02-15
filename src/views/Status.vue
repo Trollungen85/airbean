@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="default-page">
     <p>Ordernummer: </p>
 
     <img src="../assets/drone.svg" alt="picture of a drone" class="drone-img">
@@ -8,13 +8,17 @@
 
     <p> minuter</p>
 
-    <button>Ok, cool!</button>
+    <button v-on:click="toProfile">Ok, cool!</button>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    toProfile() {
+      this.$router.push("/profile");
+    }
+  }
 }
 </script>
 

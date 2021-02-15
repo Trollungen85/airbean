@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div class="default-page">
+    <NavComp />
+    <CartComp />
     <h2>Meny</h2>
     <ul>
       <li v-for="item in menu" :key="item.id">
@@ -13,8 +15,14 @@
 </template>
 
 <script>
-export default {
+import NavComp from "@/components/NavComp.vue"
+import CartComp from '../components/CartComp.vue';
 
+export default {
+  components: {
+    NavComp,
+    CartComp
+  },
   computed: {
     menu: function() {
       return this.$store.state.menu;

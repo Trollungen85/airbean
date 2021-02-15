@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="landing-wrapper default-page">
     <NavComp />
 
     <div>
@@ -20,6 +20,11 @@ export default {
 </script>
 
 <style>
+.landing-wrapper {
+  background: url("../assets/landingbackground.svg") no-repeat;
+  background-size: cover;
+  text-align: center;
+}
 .logo {
   background-color: var(--color1);
   width: 100px;

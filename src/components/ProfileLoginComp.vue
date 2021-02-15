@@ -4,24 +4,39 @@
     <h2>Välkommen till AirBean-familjen!</h2>
     <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
 
-    <form>
+    <form @submit.prevent>
       <label for="name">Namn</label>
-      <input type="text" name="name">
+      <input v-model="newUser.name" type="text" name="name">
 
       <label for="email">Epost</label>
-      <input type="text" name="email">
+      <input v-model="newUser.email" type="text" name="email">
       
-      <input type="checkbox" name="checkbox"> 
+      <input v-model="newUser.gdpr" type="checkbox" name="checkbox"> 
       <label for="checkbox">GDPR Ok!</label>
 
-      <button>Brew me a cup!</button>
+      <button v-on:click="login">Brew me a cup!</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      newUser: {
+        id: 1,
+        name: "",
+        email: "",
+        gdpr: false,
+        loggedIn: true
+      }
+    }
+  },
+  methods: {
+    login() {
+      this.$store.commit("addUser", this.newUser);
+    }
+  }
 }
 </script>
 

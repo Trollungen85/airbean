@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <p>Profile</p>
-    <ProfileLoginComp />
-    <ProfileUserComp />
+  <div class="default-page">
+    <NavComp />
+    <div v-if="loggedIn">
+      <ProfileUserComp />
+    </div>
+     <div v-else>
+      <ProfileLoginComp />
+    </div>
   </div>
 </template>
 
@@ -10,11 +14,18 @@
 
 import ProfileLoginComp from '../components/ProfileLoginComp.vue'
 import ProfileUserComp from '../components/ProfileUserComp.vue'
+import NavComp from "@/components/NavComp.vue"
 
 export default {
   components: {
     ProfileLoginComp,
-    ProfileUserComp
+    ProfileUserComp,
+    NavComp
+  },
+  computed: {
+    loggedIn: function() {
+      return this.$store.state.user.loggedIn;
+    }
   }
 
 }
