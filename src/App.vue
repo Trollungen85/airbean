@@ -18,7 +18,7 @@
 /* background-color: var(--color1); */
 }
 .default-page {
-  min-height: 666px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

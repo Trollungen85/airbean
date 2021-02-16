@@ -3,13 +3,16 @@
     <div v-if="navClosed">
       <button class="nav-btn" v-on:click="toggleNav"></button>
     </div>
-    <div v-else>
+    <div class="nav-menu-wrapper" v-else>
       <button class="close-btn" v-on:click="toggleNav"/>
       <ul class="nav">
-        <li><router-link to="/menu">Meny</router-link></li>
-        <li><router-link to="/about">Vårt Kaffe</router-link></li>
-        <li><router-link to="/profile">Min Profil</router-link></li>
-        <li><router-link to="/status">Orderstatus</router-link></li>
+        <li><router-link class="router-link" to="/menu">Meny</router-link></li>
+        <hr>
+        <li><router-link class="router-link" to="/about">Vårt Kaffe</router-link></li>
+        <hr>
+        <li><router-link class="router-link" to="/profile">Min Profil</router-link></li>
+        <hr>
+        <li><router-link class="router-link" to="/status">Orderstatus</router-link></li>
       </ul>
     </div>  
   </div>
@@ -37,6 +40,25 @@ export default {
 <style>
 .nav-comp-wrapper {
   background: var(--color1);
+  width: 100vw;
+  height: 100vh;
+}
+.nav-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.nav li {
+  margin: 30px 0px;
+}
+.router-link {
+  font-size: 32px;
+  color: white;
+  text-decoration: none;
+}
+hr {
+  width: 50px;
+  margin: auto;
+  opacity: 0.2;
 }
 .nav {
   padding: 0;
@@ -59,5 +81,7 @@ export default {
   border-radius: 50%;
   outline: none;
   border: none;
+  align-self: flex-start;
+  margin: 10px;
 }
 </style>
