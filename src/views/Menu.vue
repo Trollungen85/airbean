@@ -5,7 +5,7 @@
     <h2>Meny</h2>
     <ul>
       <li v-for="item in menu" :key="item.id">
-        <button>+</button>
+        <button class="add-btn" @click="addToCart(item)"></button>
         <h3> {{ item.name }} </h3>
         <h3> {{ item.price }} </h3>
         <p> {{ item.description }} </p>
@@ -27,11 +27,24 @@ export default {
     menu: function() {
       return this.$store.state.menu;
     }
+  },
+  methods: {
+    addToCart(item) {
+      this.$store.state.cart.push(item);
+    }
   }
 
 }
 </script>
 
 <style>
-
+.add-btn {
+  width: 32px;
+  height: 32px;
+  background: url('../assets/add-btn.svg');
+  background-size: cover;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+}
 </style>

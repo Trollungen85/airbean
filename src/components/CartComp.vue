@@ -11,6 +11,7 @@
         <!-- In med allt kaffe som du beställt -->
       <ul>
         <li>
+          {{ item.name }}
           <button>Upp</button>
           <span>1</span>
           <button>Ner</button>
@@ -34,6 +35,9 @@ export default {
   computed: {
     cartClosed: function() {
       return this.$store.state.cartClosed;
+    },
+    item: function() {
+      return this.$store.state.cart[0];
     }
   },
   methods: {

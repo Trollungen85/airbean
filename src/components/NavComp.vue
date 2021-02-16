@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-comp-wrapper"> 
+  <div> 
     <div v-if="navClosed">
       <button class="nav-btn" v-on:click="toggleNav"></button>
     </div>
@@ -28,24 +28,23 @@ export default {
   methods: {
     toggleNav() {
       this.$store.commit("toggleNav");
+      this.$emit("changeOpenedNav");
     }
   },
   created() {
     this.$store.commit("toggleNav"); 
-    //Efter som naven är öppne när man navigerar fungerar det att toggla till Stäng
+    //Efter som naven är öppen när man navigerar fungerar det att toggla till Stäng
   }
 }
 </script>
 
 <style>
-.nav-comp-wrapper {
-  background: var(--color1);
-  width: 100vw;
-  height: 100vh;
-}
 .nav-menu-wrapper {
   display: flex;
   flex-direction: column;
+  background: var(--color1);
+  width: 100vw;
+  height: 100vh;
 }
 .nav li {
   margin: 30px 0px;
