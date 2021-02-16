@@ -1,8 +1,8 @@
 <template>
   <div class="landing-wrapper default-page">
-    <NavComp />
+    <div v-if="openedNav"><NavComp /></div>
 
-    <div>
+    <div v-else @click="openNav">
       <img class="logo" src="../assets/airbean_logo.svg" alt="picure of a logo">
       <h1>AIR BEAN</h1>
       <p>DRONEDELIVERED COFFEE</p>
@@ -13,8 +13,18 @@
 <script>
 import NavComp from "@/components/NavComp.vue"
 export default {
+  data() {
+    return {
+      openedNav: false
+    }
+  },
   components: {
     NavComp
+  },
+  methods: {
+    openNav() {
+      this.openedNav = true;
+    }
   }
 }
 </script>

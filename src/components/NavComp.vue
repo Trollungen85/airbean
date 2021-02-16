@@ -1,10 +1,10 @@
 <template>
-  <div> 
+  <div class="nav-comp-wrapper"> 
     <div v-if="navClosed">
       <button class="nav-btn" v-on:click="toggleNav"></button>
     </div>
     <div v-else>
-      <button v-on:click="toggleNav">X</button>
+      <button class="close-btn" v-on:click="toggleNav"/>
       <ul class="nav">
         <li><router-link to="/menu">Meny</router-link></li>
         <li><router-link to="/about">Vårt Kaffe</router-link></li>
@@ -35,17 +35,29 @@ export default {
 </script>
 
 <style>
+.nav-comp-wrapper {
+  background: var(--color1);
+}
 .nav {
   padding: 0;
   list-style: none;
 }
 .nav-btn {
-    width: 50px;
-    height: 50px;
-    background: url('../assets/navicon.svg');
-    background-size: cover;
-    border-radius: 50%;
-    outline: none;
-    border: none;
+  width: 50px;
+  height: 50px;
+  background: url('../assets/navicon.svg');
+  background-size: cover;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+}
+.close-btn {
+  width: 50px;
+  height: 50px;
+  background: url('../assets/close-btn.svg');
+  background-size: cover;
+  border-radius: 50%;
+  outline: none;
+  border: none;
 }
 </style>

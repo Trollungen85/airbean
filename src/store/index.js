@@ -8,6 +8,8 @@ export default new Vuex.Store({
     navClosed: true,
     cartClosed: true,
     user: { loggedIn: false},
+    cart: [],
+    orders: [],
     menu: [
       {
         id: 1,
