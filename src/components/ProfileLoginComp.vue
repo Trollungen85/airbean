@@ -14,7 +14,7 @@
       <input v-model="newUser.gdpr" type="checkbox" name="checkbox"> 
       <label for="checkbox">GDPR Ok!</label>
 
-      <button v-on:click="login">Brew me a cup!</button>
+      <button v-on:click="login" class="default-btn">Brew me a cup!</button>
     </form>
   </div>
 </template>

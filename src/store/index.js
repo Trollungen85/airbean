@@ -56,6 +56,7 @@ export default new Vuex.Store({
     ]
   },
   getters:{
+
   },
   mutations: {
     toggleNav(state) {
@@ -84,6 +85,7 @@ export default new Vuex.Store({
       else {
         state.cart.push(item);
       }
+
     },
     subtractAmount(state, subtract) {
       if (subtract.item.amount > 1) {
@@ -93,8 +95,8 @@ export default new Vuex.Store({
       else {
         state.cart.splice(subtract.index, 1);
       }
-    }
 
+    },
   },
   actions: {
   },

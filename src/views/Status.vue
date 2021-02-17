@@ -8,7 +8,7 @@
 
     <p> minuter</p>
 
-    <button v-on:click="toProfile">Ok, cool!</button>
+    <button v-on:click="toProfile" class="default-btn">Ok, cool!</button>
   </div>
 </template>
 

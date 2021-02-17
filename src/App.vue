@@ -9,6 +9,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 :root {
   --color1: rgb(47, 41, 38);
@@ -24,6 +25,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.default-btn {
+  background: var(--color1);
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: white;
+}
+h2 {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+ul {
+    list-style: none;
 }
 
 </style>

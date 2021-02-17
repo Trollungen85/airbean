@@ -4,7 +4,7 @@
       <button class="cart-btn" v-on:click="toggleCart"></button>
     </div>
 
-    <div v-else>
+    <div v-else class="open-cart-comp">
       <button class="cart-btn" v-on:click="toggleCart"></button>
       <h2>Din beställning</h2>
 
@@ -15,26 +15,31 @@
             <p>{{ item.name }}</p>
 
             <!-- räkna ut priset här! -->
-            <p class="items-price">{{ item.price }}</p> 
+            <p class="items-price">{{ item.price * item.amount }}</p> 
           </div>
 
           <div class="cart-dots"></div>
 
           <div class="amount-display">
-            <button v-on:click="addAmount(item)">∧</button>
+            <button v-on:click="addAmount(item)" class="amount-btn">∧</button>
             <span>{{ item.amount }}</span>
-            <button v-on:click="subtractAmount(item)">∨</button>
+            <button v-on:click="subtractAmount(item)" class="amount-btn">∨</button>
           </div>
         </li>
       </ul>
 
-      <div>
-        <h3>Total</h3>
-        <h3>kr</h3>
-        <p>inkl moms + drönarleverans</p>
+      <div class="cart-bottom">
+        <div>
+          <h3>Total</h3>
+          <p>inkl moms + drönarleverans</p>
+        </div>
+
+        <div class="cart-dots"></div>
+
+        <h3>123 kr</h3>
       </div>
 
-      <button v-on:click="toStatus">Take my money!</button>
+      <button v-on:click="toStatus" class="default-btn">Take my money!</button>
 
     </div>
   </div>
@@ -48,7 +53,7 @@ export default {
     },
     cart: function() {
       return this.$store.state.cart;
-    }
+    },
   },
   methods: {
     toggleCart() {
@@ -68,7 +73,7 @@ export default {
         index: index
       }
       this.$store.commit('subtractAmount', subtract);
-    }
+    },
   }
 }
 </script>
@@ -77,6 +82,10 @@ export default {
 
 .cart-comp-wrapper {
   width: 90%;
+}
+.open-cart-comp {
+  display: flex;
+  flex-direction: column;
 }
 
 .cart-btn {
@@ -87,10 +96,12 @@ export default {
   border-radius: 50%;
   outline: none;
   border: none;
+  align-self: flex-end;
 } 
 .cart li {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto 20px;
+  margin-bottom: 10px;
 }
 .cart p {
   font-size: 20px;
@@ -104,8 +115,29 @@ export default {
 .amount-display {
   display: flex;
   flex-direction: column;
+  font-size: 12px;
+  font-weight: 900;
 }
 .cart-dots {
   border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
+}
+.amount-btn {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.cart-bottom {
+  justify-self: center;
+  align-self: bottom;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 23px;
+  margin: 32px 0;
+}
+.cart-bottom p {
+  font-size: 12px;
 }
 </style> 
