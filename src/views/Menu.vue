@@ -30,7 +30,17 @@ export default {
   },
   methods: {
     addToCart(item) {
-      this.$store.state.cart.push(item);
+      this.$store.commit("addToCart", item);
+
+      // const cart = this.$store.state.cart;
+
+      // if (cart.length !== 0) {
+      //   let foundItem = cart.find(cartItem => cartItem.id === item.id);
+      //   cartItem.amount++;
+      // }
+      // else {
+      //   this.$store.state.cart.push(item);
+      // }
     }
   }
 

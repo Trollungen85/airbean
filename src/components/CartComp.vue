@@ -10,10 +10,10 @@
 
         <!-- In med allt kaffe som du beställt -->
       <ul>
-        <li>
+        <li v-for="item in cart" :key="item.id">
           {{ item.name }}
           <button>Upp</button>
-          <span>1</span>
+          <span>{{ item.amount }}</span>
           <button>Ner</button>
         </li>
       </ul>
@@ -36,8 +36,8 @@ export default {
     cartClosed: function() {
       return this.$store.state.cartClosed;
     },
-    item: function() {
-      return this.$store.state.cart[0];
+    cart: function() {
+      return this.$store.state.cart;
     }
   },
   methods: {
