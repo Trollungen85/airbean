@@ -71,9 +71,15 @@ export default new Vuex.Store({
 
       if (state.cart.length !== 0) {
         let foundItem = state.cart.find(cartItem => cartItem.id === item.id);
-        foundItem.amount++;
-        console.log(foundItem);
-        state.cart[0].amount = foundItem.amount;
+
+        if (foundItem !== item) {
+          state.cart.push(item);
+        }
+        else {
+          foundItem.amount++;
+          let index = state.cart.findIndex(cartItem => cartItem == foundItem);
+          state.cart[index].amount = foundItem.amount;
+        }
       }
       else {
         state.cart.push(item);
