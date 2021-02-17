@@ -12,15 +12,15 @@
       <ul class="cart">
         <li v-for="item in cart" :key="item.id">
           <div>
-            <p>{{ item.name }}</p>
+            <p class="item-name">{{ item.name }}</p>
 
             <!-- räkna ut priset här! -->
-            <p class="items-price">{{ item.price * item.amount }}</p> 
+            <p class="items-price small-text">{{ item.price * item.amount }}</p> 
           </div>
 
           <div class="cart-dots"></div>
 
-          <div class="amount-display">
+          <div class="amount-display small-text">
             <button v-on:click="addAmount(item)" class="amount-btn">∧</button>
             <span>{{ item.amount }}</span>
             <button v-on:click="subtractAmount(item)" class="amount-btn">∨</button>
@@ -31,15 +31,15 @@
       <div class="cart-bottom">
         <div>
           <h3>Total</h3>
-          <p>inkl moms + drönarleverans</p>
+          <p class="small-text">inkl moms + drönarleverans</p>
         </div>
 
         <div class="cart-dots"></div>
 
-        <h3>123 kr</h3>
+        <h3>{{ totalSum }} kr</h3>
       </div>
 
-      <button v-on:click="toStatus" class="default-btn">Take my money!</button>
+      <button v-on:click="confirmOrder" class="default-btn">Take my money!</button>
 
     </div>
   </div>
@@ -54,12 +54,22 @@ export default {
     cart: function() {
       return this.$store.state.cart;
     },
+    totalSum: function() {
+      let cart = this.$store.state.cart;
+      let sum = 0;
+      for (let i = 0; i < cart.length; i++) {
+        sum += cart[i].amount * cart[i].price
+      }
+      return sum
+    }
   },
   methods: {
     toggleCart() {
       this.$store.commit("toggleCart");
     },
-    toStatus() {
+    confirmOrder() {
+      let orderNumber = Date.now();
+      this.$store.state.orders.push(orderNumber);
       this.$router.push("/status");
     },
     addAmount(item) {
@@ -104,18 +114,18 @@ export default {
   margin-bottom: 10px;
 }
 .cart p {
-  font-size: 20px;
   font-weight: 600;
   text-align: left;
 }
+.item-name {
+  font-size: 20px;
+}
 .cart .items-price {
-  font-size: 12px;
   font-weight: 100;
 }
 .amount-display {
   display: flex;
   flex-direction: column;
-  font-size: 12px;
   font-weight: 900;
 }
 .cart-dots {
@@ -136,8 +146,5 @@ export default {
   text-align: left;
   font-size: 23px;
   margin: 32px 0;
-}
-.cart-bottom p {
-  font-size: 12px;
 }
 </style> 

@@ -30,8 +30,10 @@
   background: var(--color1);
   padding: 16px 32px;
   border-radius: 30px;
+  border: none;
+  outline: none;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 600;
   color: white;
 }
 h2 {
@@ -40,6 +42,9 @@ h2 {
 }
 ul {
     list-style: none;
+}
+.small-text {
+  font-size: 12px;
 }
 
 </style>

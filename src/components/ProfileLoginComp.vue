@@ -34,7 +34,15 @@ export default {
   },
   methods: {
     login() {
-      this.$store.commit("addUser", this.newUser);
+      if (
+        this.newUser.name === "" ||
+        this.newUser.email === "" ||
+        this.newUser.gdpr === false
+      ) {
+        alert('Något står inte rätt till här...');
+        return;
+      }
+        this.$store.commit("addUser", this.newUser);
     }
   }
 }
