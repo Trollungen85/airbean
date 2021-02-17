@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cart-comp-wrapper">
     <div v-if="cartClosed" >
       <button class="cart-btn" v-on:click="toggleCart"></button>
     </div>
@@ -9,12 +9,22 @@
       <h2>Din beställning</h2>
 
         <!-- In med allt kaffe som du beställt -->
-      <ul>
+      <ul class="cart">
         <li v-for="item in cart" :key="item.id">
-          {{ item.name }}
-          <button>Upp</button>
-          <span>{{ item.amount }}</span>
-          <button>Ner</button>
+          <div>
+            <p>{{ item.name }}</p>
+
+            <!-- räkna ut priset här! -->
+            <p class="items-price">{{ item.price }}</p> 
+          </div>
+
+          <div class="cart-dots"></div>
+
+          <div class="amount-display">
+            <button v-on:click="addAmount(item)">∧</button>
+            <span>{{ item.amount }}</span>
+            <button v-on:click="subtractAmount(item)">∨</button>
+          </div>
         </li>
       </ul>
 
@@ -46,12 +56,29 @@ export default {
     },
     toStatus() {
       this.$router.push("/status");
+    },
+    addAmount(item) {
+      this.$store.commit('addToCart', item);
+    },
+    subtractAmount(item) {
+      let cart = this.$store.state.cart;
+      let index = cart.findIndex(cartItem => cartItem === item);
+      let subtract = {
+        item: item,
+        index: index
+      }
+      this.$store.commit('subtractAmount', subtract);
     }
   }
 }
 </script>
 
 <style>
+
+.cart-comp-wrapper {
+  width: 90%;
+}
+
 .cart-btn {
   background: url("../assets/cart-btn.svg");
   width: 50px;
@@ -61,4 +88,24 @@ export default {
   outline: none;
   border: none;
 } 
+.cart li {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.cart p {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+.cart .items-price {
+  font-size: 12px;
+  font-weight: 100;
+}
+.amount-display {
+  display: flex;
+  flex-direction: column;
+}
+.cart-dots {
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
+}
 </style> 

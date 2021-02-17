@@ -1,7 +1,10 @@
 <template>
   <div class="default-page">
-    <NavComp />
-    <CartComp />
+
+      <NavComp />
+      <CartComp />
+
+
     <h2>Meny</h2>
     <ul>
       <li v-for="item in menu" :key="item.id">
@@ -31,16 +34,6 @@ export default {
   methods: {
     addToCart(item) {
       this.$store.commit("addToCart", item);
-
-      // const cart = this.$store.state.cart;
-
-      // if (cart.length !== 0) {
-      //   let foundItem = cart.find(cartItem => cartItem.id === item.id);
-      //   cartItem.amount++;
-      // }
-      // else {
-      //   this.$store.state.cart.push(item);
-      // }
     }
   }
 
