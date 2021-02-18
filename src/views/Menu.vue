@@ -4,16 +4,16 @@
     <NavComp />
     <CartComp />
 
-    <div v-show="showMenu">
-      <h2>Meny</h2>
-      <ul>
-        <li v-for="item in menu" :key="item.id">
-          <button class="add-btn" @click="addToCart(item)"></button>
-          <h3> {{ item.name }} </h3>
-          <h3> {{ item.price }} </h3>
-          <p> {{ item.description }} </p>
-        </li>
-      </ul>
+    <div v-show="showNav">
+        <h2>Meny</h2>
+        <ul>
+          <li v-for="item in menu" :key="item.id">
+            <button class="add-btn" @click="addToCart(item)"></button>
+            <h3> {{ item.name }} </h3>
+            <h3> {{ item.price }} </h3>
+            <p> {{ item.description }} </p>
+          </li>
+        </ul>
     </div>
   </div>
 </template>
@@ -28,11 +28,11 @@ export default {
     CartComp
   },
   computed: {
-    showMenu: function() {
-      return this.$store.state.navClosed;
+    showCart: function() {
+      return this.$store.state.cartClosed;
     },
-    menu: function() {
-      return this.$store.state.menu;
+    showNav: function() {
+      return this.$store.state.navClosed;
     }
   },
   methods: {
