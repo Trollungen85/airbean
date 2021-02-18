@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     showMenu: function() {
-      return this.$store.state.cartClosed;
+      return this.$store.state.navClosed;
     },
     menu: function() {
       return this.$store.state.menu;

@@ -1,8 +1,9 @@
 <template>
   <div class="default-page">
     <NavComp />
-    <h2>Vårt kaffe</h2>
-    <article>
+    
+    <article v-show="showAbout">
+      <h2>Vårt kaffe</h2>
       <p>
         Pumpkin spice mug, barista cup, sit macchiato, 
         kopi-luwak, doppio, grounds dripper, crema, 
@@ -50,6 +51,12 @@ import NavComp from "@/components/NavComp.vue"
 export default {
   components: {
     NavComp
+  },
+  computed: {
+    showAbout: function() {
+    return this.$store.state.navClosed;
+  },
+
   }
 }
 

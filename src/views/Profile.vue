@@ -1,6 +1,6 @@
 <template>
-  <div class="default-page">
-    <NavComp />
+  <div class="default-page profile-wrapper">
+    <NavComp class="nav-comp" />
     <div v-if="loggedIn">
       <ProfileUserComp />
     </div>
@@ -32,5 +32,8 @@ export default {
 </script>
 
 <style>
-
-</style>
+.profile-wrapper {
+  background-color: var(--color1);
+  color: white;
+}
+</style>    

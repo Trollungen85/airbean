@@ -85,7 +85,6 @@ export default new Vuex.Store({
       else {
         state.cart.push(item);
       }
-
     },
     subtractAmount(state, subtract) {
       if (subtract.item.amount > 1) {
@@ -95,8 +94,10 @@ export default new Vuex.Store({
       else {
         state.cart.splice(subtract.index, 1);
       }
-
     },
+    clearCart(state) {
+      state.cart = [];
+    }
   },
   actions: {
   },

@@ -40,7 +40,7 @@ export default {
 
 <style>
 .nav-menu-wrapper {
-  display: flex;
+   display: flex;
   flex-direction: column;
   background: var(--color1);
   width: 100vw;

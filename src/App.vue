@@ -38,7 +38,7 @@
 }
 h2 {
   font-size: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 ul {
     list-style: none;
@@ -46,5 +46,7 @@ ul {
 .small-text {
   font-size: 12px;
 }
-
+.nav-comp {
+  margin-right: auto;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="profile-user-comp-wrapper">
         <div>
             <img src="../assets/profile.svg" class="profile-img">
             <h3>{{ user.name }}</h3>
@@ -10,7 +10,7 @@
             <h4>Orderhistorik</h4>
             <ul>
                 <li v-for="order in orders" v-bind:key="order.orderNumbers">
-                    <div>#{{ order.orderNumber }} DATUM</div>
+                    <div>#{{ order.orderNumber }} {{ order.date }}</div>
                     <div>total ordersumma: {{ order.totalSum }} kr</div> 
                 </li>
             </ul>
@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style>
+.profile-user-comp-wrapper {
+
+}
 .profile-img {
     width: 100px;
     background: var(--color1);

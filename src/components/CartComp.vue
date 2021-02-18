@@ -1,6 +1,7 @@
 <template>
   <div class="cart-comp-wrapper">
-    <div v-if="cartClosed" >
+    <div v-if="cartClosed" class="closed-cart-comp">
+      <div class="cart-counter">{{ cartAmount }}</div>
       <button class="cart-btn" v-on:click="toggleCart"></button>
     </div>
 
@@ -63,6 +64,14 @@ export default {
         sum += cart[i].amount * cart[i].price;
       }
       return sum;
+    },
+    cartAmount: function() {
+      let cart = this.$store.state.cart;
+      let sum = 0;
+      for (let i = 0; i < cart.length; i++) {
+        sum += cart[i].amount;
+      }
+      return sum;
     }
   },
   methods: {
@@ -74,10 +83,17 @@ export default {
       order.cart = this.$store.state.cart;
       order.totalSum = this.totalSum;
       order.orderNumber = Date.now();
-      console.log(order)
-     
+      
+      let date = new Date();
+      let year = date.getUTCFullYear().toString().substr(-2);
+      let month = date.getUTCMonth() + 1; //months from 1-12
+      let day = date.getUTCDate();
+      order.date = year + "/" + month + "/" + day;
+
       this.$store.state.orders.push(order);
-      console.log(this.$store.state.orders)
+
+      this.$store.commit("clearCart");
+
       this.$router.push("/status");    
     },
     addAmount(item) {
@@ -104,7 +120,17 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.closed-cart-comp {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 50px;
+  width: 50px;
+  height: 50px;
+}
 .cart-btn {
+  grid-row: 1;
+  grid-column: 1;
+
   background: url("../assets/cart-btn.svg");
   width: 50px;
   height: 50px;
@@ -114,6 +140,19 @@ export default {
   border: none;
   align-self: flex-end;
 } 
+.cart-counter {
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: right;
+
+  background-color: red;
+  width: 14px;
+  height: 14px;
+  font-size: 12px;
+  border-radius: 50%;
+  color: white;
+  z-index: 1;
+}
 .li-grid {
   display: grid;
   grid-template-columns: 80% 20%;
