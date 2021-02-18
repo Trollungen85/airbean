@@ -9,12 +9,16 @@
       <h2>Din beställning</h2>
 
       <ul class="cart">
-        <li v-for="item in cart" :key="item.id" class="fill-dots">
+        <li v-for="item in cart" :key="item.id">
           <div class="li-grid">
-            <div class="cart-name-total">
+            <div class="cart-name">
               <p class="item-name">{{ item.name }}</p>
+            </div>
+
+            <div class="cart-item-total">
               <p class="items-price small-text">{{ item.price * item.amount }}</p> 
             </div>
+
             <div class="amount-display small-text">
               <button v-on:click="addAmount(item)" class="amount-btn">∧</button>
               <span>{{ item.amount }}</span>
@@ -110,21 +114,30 @@ export default {
   border: none;
   align-self: flex-end;
 } 
-.fill-dots {
-  border-bottom: 2px dotted black;
-}
 .li-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 1fr 1fr;
   justify-content: space-between;
-  
 }
-.cart-name-total {
+.cart-name {
+  border-bottom: 2px dotted black;
+  outline: 4px solid white;
+  grid-column: 1;
+  grid-row: 1;
+  display: inline;
+  text-align: left;
+}
+.cart-name p {
   outline: 4px solid white;
   display: inline;
+  text-align: left;
+}
+.cart-item-total {
+  grid-column: 1;
+  grid-row: 2;
 }
 .cart p {
-
   background-color: white;
   font-weight: 600;
   text-align: left;
@@ -138,6 +151,10 @@ export default {
 .amount-display {
   display: flex;
   flex-direction: column;
+  grid-column: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
   font-weight: 900;
   outline: 4px solid white;
 }
