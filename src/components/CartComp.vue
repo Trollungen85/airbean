@@ -8,23 +8,21 @@
       <button class="cart-btn" v-on:click="toggleCart"></button>
       <h2>Din beställning</h2>
 
-        <!-- In med allt kaffe som du beställt -->
       <ul class="cart">
-        <li v-for="item in cart" :key="item.id">
-          <div>
-            <p class="item-name">{{ item.name }}</p>
-
-            <!-- räkna ut priset här! -->
-            <p class="items-price small-text">{{ item.price * item.amount }}</p> 
+        <li v-for="item in cart" :key="item.id" class="fill-dots">
+          <div class="li-grid">
+            <div class="cart-name-total">
+              <p class="item-name">{{ item.name }}</p>
+              <p class="items-price small-text">{{ item.price * item.amount }}</p> 
+            </div>
+            <div class="amount-display small-text">
+              <button v-on:click="addAmount(item)" class="amount-btn">∧</button>
+              <span>{{ item.amount }}</span>
+              <button v-on:click="subtractAmount(item)" class="amount-btn">∨</button>
+            </div>  
           </div>
 
-          <div class="cart-dots"></div>
-
-          <div class="amount-display small-text">
-            <button v-on:click="addAmount(item)" class="amount-btn">∧</button>
-            <span>{{ item.amount }}</span>
-            <button v-on:click="subtractAmount(item)" class="amount-btn">∨</button>
-          </div>
+          
         </li>
       </ul>
 
@@ -58,9 +56,9 @@ export default {
       let cart = this.$store.state.cart;
       let sum = 0;
       for (let i = 0; i < cart.length; i++) {
-        sum += cart[i].amount * cart[i].price
+        sum += cart[i].amount * cart[i].price;
       }
-      return sum
+      return sum;
     }
   },
   methods: {
@@ -68,9 +66,15 @@ export default {
       this.$store.commit("toggleCart");
     },
     confirmOrder() {
-      let orderNumber = Date.now();
-      this.$store.state.orders.push(orderNumber);
-      this.$router.push("/status");
+      let order = {};
+      order.cart = this.$store.state.cart;
+      order.totalSum = this.totalSum;
+      order.orderNumber = Date.now();
+      console.log(order)
+     
+      this.$store.state.orders.push(order);
+      console.log(this.$store.state.orders)
+      this.$router.push("/status");    
     },
     addAmount(item) {
       this.$store.commit('addToCart', item);
@@ -89,7 +93,6 @@ export default {
 </script>
 
 <style>
-
 .cart-comp-wrapper {
   width: 90%;
 }
@@ -97,7 +100,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 .cart-btn {
   background: url("../assets/cart-btn.svg");
   width: 50px;
@@ -108,12 +110,22 @@ export default {
   border: none;
   align-self: flex-end;
 } 
-.cart li {
+.fill-dots {
+  border-bottom: 2px dotted black;
+}
+.li-grid {
   display: grid;
-  grid-template-columns: auto auto 20px;
-  margin-bottom: 10px;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  
+}
+.cart-name-total {
+  outline: 4px solid white;
+  display: inline;
 }
 .cart p {
+
+  background-color: white;
   font-weight: 600;
   text-align: left;
 }
@@ -127,6 +139,7 @@ export default {
   display: flex;
   flex-direction: column;
   font-weight: 900;
+  outline: 4px solid white;
 }
 .cart-dots {
   border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
@@ -136,7 +149,6 @@ export default {
   border: none;
   background: transparent;
 }
-
 .cart-bottom {
   justify-self: center;
   align-self: bottom;

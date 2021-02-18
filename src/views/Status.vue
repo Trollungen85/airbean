@@ -1,6 +1,6 @@
 <template>
   <div class="default-page status-background">
-    <p>Ordernummer: {{ orderNumber }}</p>
+    <p>Ordernummer: {{ order.orderNumber }}</p>
 
     <img src="../assets/drone.svg" alt="picture of a drone" class="drone-img">
 
@@ -15,7 +15,7 @@
 <script>
 export default {
   computed: {
-    orderNumber: function() {
+    order: function() {
       let orders = this.$store.state.orders;
       orders = orders.reverse();
       return orders[0];

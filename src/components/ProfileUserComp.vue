@@ -9,11 +9,12 @@
         <div>
             <h4>Orderhistorik</h4>
             <ul>
-                <li>
-                    <!-- alla gamla beställningar -->
+                <li v-for="order in orders" v-bind:key="order.orderNumbers">
+                    <div>#{{ order.orderNumber }} DATUM</div>
+                    <div>total ordersumma: {{ order.totalSum }} kr</div> 
                 </li>
             </ul>
-            <p>Totalt spenderat</p>
+            <p>Totalt spenderat {{ orderTotalSum }} kr</p>
         </div>
 
     </section>
@@ -24,13 +25,23 @@ export default {
     computed: {
         user: function() {
             return this.$store.state.user;
-        }
+        },
+        orders: function() {
+            return this.$store.state.orders;
+        },
+        orderTotalSum: function() {
+            let orders = this.$store.state.orders;
+            let sum = 0;
+            for (let i = 0; i < orders.length; i++) {
+            sum += orders[i].totalSum;
+      }
+      return sum;
+    }
     }
 }
 </script>
 
 <style>
-
 .profile-img {
     width: 100px;
     background: var(--color1);
